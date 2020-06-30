@@ -1,0 +1,20 @@
+// http://bernatferragut.com/
+//@version=4
+
+// Titles
+study(shorttitle="3MA", title="Triple Exponential Moving Averages", overlay=true)
+
+// MAPeriod is a variable used to store the indicator lookback period. In this case, from the input() built-in funtion.
+MA1Period = input(50, title="MA1 Period")
+MA2Period = input(100, title="MA2 Period")
+MA3Period = input(200, title="MA3 Period")
+
+// MA# is a variable used to store the actual moving average value. In this case, from the sma() built-in funtion.
+MA1 = ema(close, MA1Period)
+MA2 = ema(close, MA2Period)
+MA3 = ema(close, MA3Period)
+
+// This will draw the information in the chart
+plot(MA1, color=color.red, linewidth=1)
+plot(MA2, color=color.green, linewidth=2)
+plot(MA3, color=color.blue, linewidth=3)

@@ -1,0 +1,30 @@
+// http://bernatferragut.com/
+//@version=4
+
+// Project
+study("RSI-Signals", overlay=true)
+
+// Inputs
+rsiSource = input(title="RSI Source", type=input.source,    defval=close)
+rsiLength = input(title="RSI Length", type=input.integer,   defval=14)
+
+// RSI calculation
+rsiValue = rsi(rsiSource, rsiLength)
+
+// Overbought vs Oversold
+rsiOverbought   = input(title="RSI Overbought Level", type=input.integer, defval=80)
+rsiOversold     = input(title="RSI Oversold Level",   type=input.integer, defval=20)
+
+// Logic for Overbought vs Oversold
+rsiOB = rsiValue >= rsiOverbought
+rsiOS = rsiValue <= rsiOversold
+
+// Plot Shapes
+plotshape(rsiOB, title="Overbought", location=location.abovebar, color=color.red, transp=0, style=shape.triangledown)
+plotshape(rsiOS, title="Oversold", location=location.abovebar, color=color.green, transp=0, style=shape.triangleup)
+
+// Alerts
+alertcondition(rsiOB or rsiOS, title="RSI Alert!", message="RSI signal for BNBUSDT")
+
+// Plot Graph
+plot(na)
