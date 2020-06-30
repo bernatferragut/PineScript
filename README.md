@@ -6,31 +6,25 @@
 ## Anatomy of a PineScript
 
 **0.Script Author Information**
-
-http://bernatferragut.com/ 
+// http://bernatferragut.com/ 
 
 **1.PineScript version**
-//@version=4 
+// @version=4 
 
 **2.Indicator or Strategy builder**
-
-Indicator or Strategy definition
+// Indicator or Strategy definition
 
 **3.Data collection**
-
-Inputs definition
+// Inputs definition
 
 **4.Data transformation**
-
-Logic calculation
+// Logic calculation
 
 **5.Data output**
-
-Plotting to Grpah
+// Plotting to Grpah
 
 **6.External communication**
-
-Alerts to Media
+// Alerts to Media
 
 ========================
 
