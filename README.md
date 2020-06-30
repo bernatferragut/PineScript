@@ -5,26 +5,19 @@
 
 ## Anatomy of a PineScript
 
-**0.Script Author Information**
-// http://bernatferragut.com/ 
+**0.Script Author Information** => http://bernatferragut.com/ 
 
-**1.PineScript version**
-// @version=4 
+**1.PineScript version** => // @version=4 
 
-**2.Indicator or Strategy builder**
-// Indicator or Strategy definition
+**2.Indicator or Strategy builder** => Indicator or Strategy definition
 
-**3.Data collection**
-// Inputs definition
+**3.Data collection** => Inputs definition
 
-**4.Data transformation**
-// Logic calculation
+**4.Data transformation** => Logic calculation
 
-**5.Data output**
-// Plotting to Grpah
+**5.Data output** => Plotting to Graph
 
-**6.External communication**
-// Alerts to Media
+**6.External communication** => Alerts to Media
 
 ========================
 
