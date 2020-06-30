@@ -1,0 +1,26 @@
+// BernatFerragut
+//@version=4
+
+// 1.Indicator
+study("Price Data Collection")
+
+// 2.Inputs
+// Getting price data
+candleOpen = open
+candleClose = close
+candleHigh = high
+candleLow = low
+
+// 3.Logic
+candleSize = open - close
+candleSize21 = high[21] - low[21]
+
+// 4.Graph
+plot(candleOpen, color=color.blue)
+plot(candleClose, color=color.blue)
+plot(candleHigh, color=color.green)
+plot(candleLow, color=color.red)
+plot(candleSize, color=color.purple)
+// plot(candleSize, color=color.black)
+
+// 5. Alerts
