@@ -1,0 +1,83 @@
+//@version=4
+// Copyright (c) 2019-present, Franklin Moormann (cheatcountry)
+// Fear And Greed Indicator [CC] script may be freely distributed under the MIT license.
+study("Fear And Greed Indicator [CC]", overlay=false)
+
+f_security(_symbol, _res, _src, _repaint) => 
+    security(_symbol, _res, _src[_repaint ? 0 : barstate.isrealtime ? 1 : 0])[_repaint ? 0 : barstate.isrealtime ? 0 : 1]
+    
+res = input(title="Resolution", type=input.resolution, defval="")
+rep = input(title="Allow Repainting?", type=input.bool, defval=false)
+bar = input(title="Allow Bar Color Change?", type=input.bool, defval=true)
+fastLength = input(title="FastLength", type=input.integer, defval=10, minval=1)
+slowLength = input(title="SlowLength", type=input.integer, defval=30, minval=1)
+smoothLength = input(title="SmoothLength", type=input.integer, defval=2, minval=1)
+p = f_security(syminfo.tickerid, res, close, rep)
+t = f_security(syminfo.tickerid, res, tr, rep)
+
+trUp = p > p[1] ? t : 0
+trDn = p < p[1] ? t : 0
+fastDiff = wma(trUp, fastLength) - wma(trDn, fastLength)
+slowDiff = wma(trUp, slowLength) - wma(trDn, slowLength)
+fgi = wma(fastDiff - slowDiff, smoothLength)
+
+sig = fgi > 0 ? 1 : fgi < 0 ? -1 : 0
+alertcondition(crossover(sig, 0), "Buy Signal", "Bullish Change Detected")
+alertcondition(crossunder(sig, 0), "Sell Signal", "Bearish Change Detected")
+fgiColor = sig > 0 ? color.green : sig < 0 ? color.red : color.black
+barcolor(bar ? fgiColor : na)
+plot(fgi, color=fgiColor, style=plot.style_histogram, linewidth=2)
+
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Zeiierman
+
+//Copyright by Zeiierman.
+//The information contained in my scripts/indicators/ideas does not constitute financial advice or a solicitation to buy or sell any securities of any type. 
+//I will not accept liability for any loss or damage, including without limitation any loss of profit, which may arise directly or indirectly from use of or reliance on such information.
+//All investments involve risk, and the past performance of a security, industry, sector, market, financial product, trading strategy, or individual’s trading does not guarantee future results or returns. 
+//Investors are fully responsible for any investment decisions they make. Such decisions should be based solely on an evaluation of their financial circumstances, investment objectives, risk tolerance, and liquidity needs.
+//My scripts/indicators/ideas are only for educational purposes!
+
+//@version=4
+study("Fearzone indicator", overlay=true, shorttitle="FearZone (Expo)")
+
+High_period = input(30, title="High Period")
+Stdev_period = input(50, title="Stdev Period")
+source = input(ohlc4, title="Source")
+WMA = input(true, title="Use WMA instead of SMA?")
+
+// Condition One 
+FZ1 = (highest(source,High_period) - source)/highest(source,High_period)
+AVG1 = sma(FZ1,Stdev_period)
+
+if WMA 
+    AVG1 := wma(FZ1,Stdev_period)
+    
+STDEV1 = stdev(FZ1,Stdev_period)
+FZ1Limit = AVG1+STDEV1
+
+// Condition Two
+FZ2 = sma(source, High_period)
+AVG2 = sma(FZ2, Stdev_period)
+
+if WMA 
+    FZ2 := wma(source, High_period)
+    AVG2 := wma(FZ2, Stdev_period)
+    
+    
+STDEV2 = stdev(FZ2, Stdev_period)
+FZ2Limit = AVG2-STDEV2
+
+// FearZone
+Fearzone_col = FZ1 > FZ1Limit and FZ2 < FZ2Limit  ? #FC6C85:na
+
+/// Bordercolor = Transparent 
+Bordercolor = color.new(color.red,100)
+plotcandle(low-tr,low-tr,low-2*tr,low-2*tr, color=Fearzone_col, bordercolor=Bordercolor,  title="FearZone Candlesticks")
+
+// Alerts
+AlertCircle = input(true, title="Show Alert Circle?")
+FearZone_con = FZ1 > FZ1Limit and FZ2 < FZ2Limit
+Alert_Col =  FearZone_con != FearZone_con[1] and AlertCircle? #FC6C85 : na
+plotshape(FearZone_con, style=shape.circle, location=location.belowbar, size=size.tiny, color=Alert_Col, title="Alert Circles")
+alertcondition(FearZone_con != FearZone_con[1], title='FearZone', message='FearZone')
