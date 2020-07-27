@@ -18,14 +18,14 @@ console.log("connected");
 
 
 // elements selection
-const row = document.getElementById("list");
-console.log(row);
+const el = document.getElementById("rowList");
+console.log(el);
 // function creation on the window level
 function run() {
-    const newText = document.createElement('p');
-    newText.textContent = 'Bernat';
-    row.appendChild(newText);
-    console.log(newText);
+    const data = document.createElement('p');
+    data.textContent = 'DATA';
+    el.appendChild(data);
+    console.log(data);
 }
 
 
