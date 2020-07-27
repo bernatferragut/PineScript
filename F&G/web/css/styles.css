@@ -26,11 +26,12 @@ html, body {
 .row {
     width: auto;
     border: 1px solid var(--txt-c);
+    border-radius: 4px;
 }
 .flex-item {
     background-color: var(--txt-c);
     
-    width: 300px;
+    width: 250px;
     height: 40px;
 
     padding: 4px;

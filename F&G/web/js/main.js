@@ -8,7 +8,7 @@ const el = document.getElementById("rowList");
 function getData() {
 
     // GET API DATA // limit=10, format=json, date=world ( dd/mm//yy )
-    let fearGreedUrl = "https://api.alternative.me/fng/?limit=10&format=json&date_format=world";
+    let fearGreedUrl = "https://api.alternative.me/fng/?limit=1&format=json&date_format=world";
     let fearGreedData;
 
     let xhttp = new XMLHttpRequest();
