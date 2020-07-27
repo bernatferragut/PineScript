@@ -1,0 +1,90 @@
+/* CSS FONTS */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+
+/* CSS VARS */
+:root {
+    --bg-c: black;
+    --txt-c: greenyellow;
+  }
+
+html, body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: var(--txt-c);
+    background-color: var(--bg-c);
+    height: 100%;
+}
+
+.flex-container {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    width: auto;
+    border: 1px solid var(--txt-c);
+}
+.flex-item {
+    background-color: var(--txt-c);
+    padding: 5px;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    line-height: 30px;
+    color: var(--bg-c);
+    font-size: 1em;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+    margin-top: 1em;
+    padding: 1em;
+    border: 1px solid var(--txt-c);
+    border-radius: 4px;
+}
+
+div.post {
+    border-top: solid black 2px;
+}
+
+h1 {
+    width: 95%;
+    font-size: 1.5em;
+    background: lightgray;
+    padding: 0.2em;
+    text-align: justify;
+}
+
+p {
+    margin-left: 2em;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    margin-left: -5px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltiptext:hover {
+    visibility: visible;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
