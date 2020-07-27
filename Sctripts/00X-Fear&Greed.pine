@@ -9,9 +9,11 @@ f_security(_symbol, _res, _src, _repaint) =>
 res = input(title="Resolution", type=input.resolution, defval="")
 rep = input(title="Allow Repainting?", type=input.bool, defval=false)
 bar = input(title="Allow Bar Color Change?", type=input.bool, defval=true)
+
 fastLength = input(title="FastLength", type=input.integer, defval=10, minval=1)
 slowLength = input(title="SlowLength", type=input.integer, defval=30, minval=1)
 smoothLength = input(title="SmoothLength", type=input.integer, defval=2, minval=1)
+
 p = f_security(syminfo.tickerid, res, close, rep)
 t = f_security(syminfo.tickerid, res, tr, rep)
 
